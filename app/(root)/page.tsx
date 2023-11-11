@@ -5,7 +5,7 @@ import { cn } from '@/lib/utils';
 import { siteConfig } from '@/config/site';
 import { Card, CardDescription, CardTitle } from '@/components/ui/card';
 import { RxActivityLog } from 'react-icons/rx';
-import { BsFire, BsLayoutTextWindowReverse } from 'react-icons/bs';
+import { BsRocketTakeoff, BsLayoutTextWindowReverse } from 'react-icons/bs';
 import { TbDeviceAnalytics } from 'react-icons/tb';
 import { buttonVariants } from '@/components/ui/button';
 import HeadingText from '@/components/heading-text';
@@ -33,6 +33,13 @@ function Cards() {
         <CardTitle>Analytics</CardTitle>
         <CardDescription>
           Find the order review and analysis needed in your project here.
+        </CardDescription>
+      </Card>
+      <Card className='flex flex-grow flex-col justify-between gap-4 p-8 text-left dark:bg-secondary'>
+        <BsRocketTakeoff className='text-4xl' />
+        <CardTitle>َUpdate</CardTitle>
+        <CardDescription>
+        And things that will be added and updated soon with your help.
         </CardDescription>
       </Card>
     </>

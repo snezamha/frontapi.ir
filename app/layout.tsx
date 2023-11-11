@@ -4,6 +4,7 @@ import { Inter } from 'next/font/google';
 import { ThemeProvider } from '@/components/theme-provider';
 import { Toaster } from '@/components/ui/toaster';
 import NextTopLoader from 'nextjs-toploader';
+import { ModalProvider } from '@/components/modal-provider'
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -72,6 +73,7 @@ export default async function RootLayout({ children }: RootLayoutProps) {
           <NextTopLoader color='#000' height={2.5} showSpinner={false} />
           {children}
           <Toaster />
+          <ModalProvider />
         </ThemeProvider>
       </body>
     </html>

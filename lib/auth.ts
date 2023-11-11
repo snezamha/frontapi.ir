@@ -2,6 +2,9 @@ import { PrismaAdapter } from '@next-auth/prisma-adapter';
 import { NextAuthOptions } from 'next-auth';
 import GoogleProvider from 'next-auth/providers/google';
 import GithubProvider from 'next-auth/providers/github';
+import CredentialsProvider from 'next-auth/providers/credentials';
+import { authValidator } from '@/lib/validations/auth';
+import bcrypt from 'bcrypt';
 
 import prismadb from '@/lib/prismadb';
 
@@ -23,38 +26,83 @@ export const authOptions: NextAuthOptions = {
       clientId: process.env.GOOGLE_ID!,
       clientSecret: process.env.GOOGLE_SECRET!,
     }),
+    CredentialsProvider({
+      name: 'credentials',
+      credentials: {
+        email: { label: 'email', type: 'text' },
+        password: { label: 'password', type: 'password' },
+      },
+      async authorize(credentials) {
+        const { email, password } = authValidator.parse(credentials);
+
+        const user = await prismadb.user.findUnique({
+          where: {
+            email,
+          },
+        });
+        if (user) {
+          const isCorrectPassword = await bcrypt.compare(
+            password,
+            user.hashedPassword!
+          );
+          if (!isCorrectPassword) {
+            throw new Error('Invalid password');
+          }
+          return user;
+        } else {
+          return null;
+          // const hashedPassword = await bcrypt.hash(password, 12);
+          // const newUser = await prismadb.user.create({
+          //   data: {
+          //     email,
+          //     hashedPassword,
+          //   },
+          // });
+          // return newUser;
+        }
+      },
+    }),
   ],
   callbacks: {
-    async session({ token, session }) {
-      if (token) {
-        session.user.id = token.id;
-        session.user.name = token.name;
-        session.user.email = token.email;
-        session.user.image = token.picture;
-      }
-
-      return session;
-    },
-    async jwt({ token, user }) {
-      const dbUser = await prismadb.user.findFirst({
+    //TODO: fix this any
+    async session({ token, session }: any) {
+      const user = await prismadb.user.findFirst({
         where: {
           email: token.email,
         },
       });
 
-      if (!dbUser) {
-        if (user) {
-          token.id = user?.id;
+      if (!user) {
+        try {
+          const newUser = await prismadb.user.create({
+            data: {
+              email: token.email,
+              name: token.name,
+              is_admin: false,
+            },
+          });
+
+          //Put new created user data in session
+          session.user.id = newUser.id;
+          session.user.name = newUser.name;
+          session.user.email = newUser.email;
+
+          session.user.isAdmin = false;
+          return session;
+        } catch (error) {
+          return console.log(error);
         }
-        return token;
+      } else {
+        //User allready exist in localDB, put user data in session
+        session.user.id = user.id;
+        session.user.name = user.name;
+        session.user.email = user.email;
+
+        session.user.isAdmin = user.is_admin;
       }
 
-      return {
-        id: dbUser.id,
-        name: dbUser.name,
-        email: dbUser.email,
-        picture: dbUser.image,
-      };
+      //console.log(session, "session");
+      return session;
     },
   },
 };

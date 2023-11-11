@@ -3,13 +3,13 @@ import Link from 'next/link';
 
 import { cn } from '@/lib/utils';
 import { buttonVariants } from '@/components/ui/button';
-import { UserAuthForm } from '@/components/user/user-auth-form';
+import { AdminAuthForm } from '@/components/admin/admin-auth-form';
 
 import { Icons } from '@/components/icons';
 
 export const metadata: Metadata = {
-  title: 'Sign up',
-  description: 'Create an account',
+  title: 'Admin login',
+  description: '',
 };
 
 export default function Signup() {
@@ -30,22 +30,13 @@ export default function Signup() {
       <div className='mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]'>
         <div className='flex flex-col space-y-2 text-center'>
           <h1 className='text-2xl font-semibold tracking-tight'>
-            Create an account
+            Admin login
           </h1>
           <p className='text-sm text-muted-foreground'>
-            Select a provider to create your account
+            YOU HAVE ADMIN ACCESS
           </p>
         </div>
-        <UserAuthForm />
-        <p className='px-8 text-center text-sm text-muted-foreground'>
-          Already have an account?{' '}
-          <Link
-            href='/signin'
-            className='hover:text-brand underline underline-offset-4'
-          >
-            Sign in
-          </Link>
-        </p>
+        <AdminAuthForm />
       </div>
     </main>
   );

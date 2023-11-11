@@ -10,11 +10,11 @@ import ProjectSwitcher from '@/components/project-switcher';
 import prismadb from '@/lib/prismadb';
 
 export const metadata: Metadata = {
-  title: 'Dashboard',
+  title: 'Project',
   description: '',
 };
 
-export default async function Dashboard() {
+export default async function Project() {
   const user = await getCurrentUser();
   const userId = user.id;
 
@@ -33,7 +33,7 @@ export default async function Dashboard() {
 
   return (
     <Shell>
-      <DashboardHeader heading='Dashboard' text='Select or create your project'>
+      <DashboardHeader heading='Project :' text='You can switch between projects'>
         <ProjectSwitcher items={projects} />
       </DashboardHeader>
 
