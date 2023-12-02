@@ -18,11 +18,15 @@ import {
   AiFillGithub,
 } from 'react-icons/ai';
 import { MdDeleteForever, MdOutlineLogout } from 'react-icons/md';
-import { BiHistory, BiCalendar } from 'react-icons/bi';
+import { BiHistory, BiCalendar ,BiCategoryAlt} from 'react-icons/bi';
 import { FaUserAlt, FaSort } from 'react-icons/fa';
 import { ImSpinner8, ImStatsBars } from 'react-icons/im';
 import { RxDashboard, RxMixerHorizontal } from 'react-icons/rx';
-import { LuSettings } from 'react-icons/lu';
+import { LuSettings, LuHome ,LuSettings2 } from 'react-icons/lu';
+import { Store } from 'lucide-react';
+import { RiAuctionLine } from 'react-icons/ri';
+import { FcShop } from "react-icons/fc";
+import { AiOutlineDashboard } from "react-icons/ai";
 
 type IconKeys = keyof typeof icons;
 
@@ -36,8 +40,9 @@ const icons = {
   github: AiFillGithub,
 
   // Dashboard Icons
-  dashboard: RxDashboard,
-  activity: BsActivity,
+  dashboard: AiOutlineDashboard,
+  store: Store,
+  home: LuHome,
   settings: LuSettings,
 
   // Mode Toggle
@@ -66,6 +71,12 @@ const icons = {
   statsBar: ImStatsBars,
   mixer: RxMixerHorizontal,
   check: BsCheck2,
+
+  // Projects
+  psetting : LuSettings2,
+  categories: BiCategoryAlt,
+  products : FcShop,
+  auctions: RiAuctionLine,
 };
 
 export const Icons: IconsType = icons;

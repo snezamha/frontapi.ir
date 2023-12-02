@@ -15,7 +15,7 @@ export default function Footer() {
           </Link>
 
           <ul className='mb-6 flex flex-wrap items-center opacity-60 sm:mb-0'>
-            {navLinks.data.map((item, index) => {
+            {/* {navLinks.data.map((item, index) => {
               return (
                 item.href && (
                   <li key={index}>
@@ -28,7 +28,8 @@ export default function Footer() {
                   </li>
                 )
               );
-            })}
+            })} */}
+            <ModeToggle />
           </ul>
         </div>
 

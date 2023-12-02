@@ -24,28 +24,33 @@ export default function Navbar({ user }: NavbarProps) {
             </Link>
           </div>
         </div>
-        <div className='hidden md:block'>
-          <div
-            className='absolute left-0 right-0 z-10 m-auto justify-self-center rounded-md border bg-background p-4 md:static md:mt-0 md:border-none md:p-0'
-            style={{ width: '100%', maxWidth: '20rem' }}
-          >
-            <ul className='flex flex-col items-center space-y-4 opacity-60 md:flex-row md:space-x-6 md:space-y-0'>
-              {navLinks.data.map((item, index) => {
-                return (
-                  item.href && (
-                    <Link
-                      key={index}
-                      href={item.disabled ? '/' : item.href}
-                      className='hover:underline'
-                    >
-                      {item.title}
-                    </Link>
-                  )
-                );
-              })}
-            </ul>
+        {!user.email ? (
+          <div className='hidden md:block'>
+            <div
+              className='absolute left-0 right-0 z-10 m-auto justify-self-center rounded-md border bg-background p-4 md:static md:mt-0 md:border-none md:p-0'
+              style={{ width: '100%', maxWidth: '20rem' }}
+            >
+              <ul className='flex flex-col items-center space-y-4 opacity-60 md:flex-row md:space-x-6 md:space-y-0'>
+                {navLinks.data.map((item, index) => {
+                  return (
+                    item.href && (
+                      <Link
+                        key={index}
+                        href={item.disabled ? '/' : item.href}
+                        className='hover:underline'
+                      >
+                        {item.title}
+                      </Link>
+                    )
+                  );
+                })}
+              </ul>
+            </div>
           </div>
-        </div>
+        ) : (
+          <div className='hidden md:block'></div>
+        )}
+
         <UserNavDisplay
           user={{
             name: user?.name,

@@ -86,7 +86,6 @@ export const authOptions: NextAuthOptions = {
           session.user.id = newUser.id;
           session.user.name = newUser.name;
           session.user.email = newUser.email;
-
           session.user.isAdmin = false;
           return session;
         } catch (error) {
@@ -97,10 +96,8 @@ export const authOptions: NextAuthOptions = {
         session.user.id = user.id;
         session.user.name = user.name;
         session.user.email = user.email;
-
         session.user.isAdmin = user.is_admin;
       }
-
       //console.log(session, "session");
       return session;
     },

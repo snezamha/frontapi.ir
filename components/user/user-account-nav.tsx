@@ -44,19 +44,18 @@ export function UserAccountNav({ user }: UserAccountNavProps) {
           </div>
         </div>
         <DropdownMenuSeparator />
-        {dashboardLinks.data.map((item, index) => {
-          const Icon = Icons[item.icon || 'next'];
-          return (
-            item.href && (
-              <DropdownMenuItem key={index} className='cursor-pointer' asChild>
-                <Link href={item.href}>
-                  <Icon className='mr-2 h-4 w-4' />
-                  <span>{item.title}</span>
-                </Link>
-              </DropdownMenuItem>
-            )
-          );
-        })}
+        <DropdownMenuItem  className='cursor-pointer' asChild>
+          <Link href='/'>
+            <Icons.home className='mr-2 h-4 w-4' />
+            <span>Home</span>
+          </Link>
+        </DropdownMenuItem>
+        <DropdownMenuItem  className='cursor-pointer' asChild>
+          <Link href='/dashboard'>
+            <Icons.dashboard className='mr-2 h-4 w-4' />
+            <span>Dashboard</span>
+          </Link>
+        </DropdownMenuItem>
         <DropdownMenuSeparator />
         <DropdownMenuItem
           className='cursor-pointer'

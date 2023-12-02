@@ -4,7 +4,7 @@ import { Inter } from 'next/font/google';
 import { ThemeProvider } from '@/components/theme-provider';
 import { Toaster } from '@/components/ui/toaster';
 import NextTopLoader from 'nextjs-toploader';
-import { ModalProvider } from '@/components/modal-provider'
+import { ModalProvider } from '@/components/modal-provider';
 
 const inter = Inter({ subsets: ['latin'] });
 

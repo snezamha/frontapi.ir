@@ -60,11 +60,60 @@ model User {
 }
 
 model Project {
-  id        String   @id @default(auto()) @map("_id") @db.ObjectId
-  name      String
-  userId    String   @db.ObjectId
-  createdAt DateTime @default(now()) @map(name: "created_at")
-  updatedAt DateTime @updatedAt @map(name: "updated_at")
+  id         String     @id @default(auto()) @map("_id") @db.ObjectId
+  name       String
+  userId     String     @db.ObjectId
+  createdAt  DateTime   @default(now()) @map(name: "created_at")
+  updatedAt  DateTime   @updatedAt @map(name: "updated_at")
+  categories Category[] @relation("ProjectToCategory")
+  products   Product[]  @relation("ProjectToCategory")
 
   @@map(name: "projects")
+}
+
+model Category {
+  id               String     @id @default(auto()) @map("_id") @db.ObjectId
+  projectId        String     @db.ObjectId // Foreign Key to Project
+  project          Project    @relation("ProjectToCategory", fields: [projectId], references: [id])
+  name             String
+  parentCategoryId String     @db.ObjectId
+  parentCategory   Category?  @relation("CategoryToCategory", fields: [parentCategoryId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  category         Category[] @relation("CategoryToCategory")
+  products         Product[]  @relation("CategoryToProduct")
+  createdAt        DateTime   @default(now())
+  updatedAt        DateTime   @updatedAt
+
+  @@unique([name, parentCategoryId])
+  @@index([projectId])
+  @@map(name: "category")
+}
+
+model Product {
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId
+  projectId  String   @db.ObjectId // Foreign Key to Project
+  project    Project  @relation("ProjectToCategory", fields: [projectId], references: [id])
+  categoryId String   @db.ObjectId // Foreign Key to Category
+  category   Category @relation("CategoryToProduct", fields: [categoryId], references: [id])
+  name       String
+  price      String
+  isFeatured Boolean  @default(false)
+  images     Image[] // Relation to Image model
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  @@index([projectId])
+  @@index([categoryId])
+  @@map(name: "products")
+}
+
+model Image {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  productId String   @db.ObjectId // Foreign Key to Product
+  product   Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  url       String // URL of the image
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([productId])
+  @@map(name: "images")
 }
