@@ -1,0 +1,20 @@
+{
+  "RootLayout": {
+    "title": "FrontAPI",
+    "description": "FrontAPI is an open source CRM build on top of NextJS."
+  },
+
+  "loadingText": "Loading...",
+  "locale": {
+    "english": "English",
+    "persian": "Persian"
+  },
+  "notFound": {
+    "404Text1": "Something's missing",
+    "404Text2": "Sorry, the page you are looking for doesn't exist or has been moved.",
+    "goBack": "Go back",
+    "backToHome": "Back to home"
+  },
+  "footer": "CopyRight © {year} By Frontapi.ir, All rights Reserved.",
+  "github": "Github"
+}

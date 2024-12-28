@@ -1,4 +1,16 @@
-/** @type {import('next').NextConfig} */
-const nextConfig = {};
+import createNextIntlPlugin from 'next-intl/plugin';
+const withNextIntl = createNextIntlPlugin('./src/i18n/request.ts');
 
-export default nextConfig;
+const nextConfig = {
+  images: {
+    domains: [
+      'localhost',
+      'res.cloudinary.com',
+      'lh3.googleusercontent.com',
+      'uploadthing.com',
+      'utfs.io',
+    ],
+  },
+};
+
+export default withNextIntl(nextConfig);
