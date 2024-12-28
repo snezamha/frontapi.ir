@@ -1,3 +1,4 @@
+import { ThemeProvider } from '@/providers/theme-provider';
 import '@/styles/globals.css';
 
 export default function RootLayout({
@@ -7,7 +8,11 @@ export default function RootLayout({
 }>) {
   return (
     <html suppressHydrationWarning lang='en'>
-      <body suppressHydrationWarning={true}>{children}</body>
+      <body suppressHydrationWarning={true}>
+        <ThemeProvider attribute='class' defaultTheme='light' enableSystem>
+          {children}
+        </ThemeProvider>
+      </body>
     </html>
   );
 }
