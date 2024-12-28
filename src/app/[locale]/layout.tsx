@@ -8,6 +8,9 @@ import { createTranslator, NextIntlClientProvider } from 'next-intl';
 import { getMessages } from 'next-intl/server';
 import { getLangDir } from 'rtl-detect';
 import DirectionProvider from '@/providers/direction-provider';
+import AuthProvider from '@/providers/auth.provider';
+import { Toaster } from '@/components/ui/toaster';
+import { Toaster as SonnerToaster } from '@/components/ui/sonner';
 
 type Props = {
   children: React.ReactNode;
@@ -42,13 +45,17 @@ export default async function RootLayout({
         suppressHydrationWarning={true}
         className={`${locale === 'fa' ? rtlFont.className : ltrFont.className}`}
       >
-        <ThemeProvider attribute='class' defaultTheme='light' enableSystem>
-          <NextIntlClientProvider messages={messages} locale={locale}>
-            <DirectionProvider direction={direction}>
-              {children}
-            </DirectionProvider>
-          </NextIntlClientProvider>
-        </ThemeProvider>
+        <AuthProvider>
+          <ThemeProvider attribute='class' defaultTheme='light' enableSystem>
+            <NextIntlClientProvider messages={messages} locale={locale}>
+              <DirectionProvider direction={direction}>
+                {children}
+                <Toaster />
+                <SonnerToaster />
+              </DirectionProvider>
+            </NextIntlClientProvider>
+          </ThemeProvider>
+        </AuthProvider>
       </body>
     </html>
   );
