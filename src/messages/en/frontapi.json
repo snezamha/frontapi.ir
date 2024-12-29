@@ -3,7 +3,6 @@
     "title": "FrontAPI",
     "description": "FrontAPI is an open source CRM build on top of NextJS."
   },
-
   "loadingText": "Loading...",
   "locale": {
     "english": "English",

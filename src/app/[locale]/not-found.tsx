@@ -7,7 +7,7 @@ import { useTranslations } from 'next-intl';
 
 export default function NotFound() {
   const router = useRouter();
-  const t = useTranslations('frontapi.notFound');
+  const t = useTranslations('notFound');
 
   return (
     <div className='absolute left-1/2 top-1/2 mb-16 -translate-x-1/2 -translate-y-1/2 items-center justify-center text-center'>

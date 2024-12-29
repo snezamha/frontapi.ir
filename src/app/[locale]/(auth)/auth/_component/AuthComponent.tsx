@@ -17,7 +17,7 @@ import { useToast } from '@/hooks/use-toast';
 export function AuthComponent() {
   const [isLoadingGoogle, setIsLoadingGoogle] = useState(false);
   const [isLoadingGitHub, setIsLoadingGithub] = useState(false);
-  const t = useTranslations('auth');
+  const t = useTranslations();
   const { toast } = useToast();
 
   const loginWithGoogle = async () => {

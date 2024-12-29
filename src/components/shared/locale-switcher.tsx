@@ -14,7 +14,7 @@ import {
 import Flag from 'react-world-flags';
 
 export default function LocalSwitcher() {
-  const t = useTranslations('frontapi.locale');
+  const t = useTranslations('locale');
   const [isPending, startTransition] = useTransition();
   const router = useRouter();
   const pathname = usePathname();

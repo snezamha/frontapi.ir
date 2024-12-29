@@ -3,7 +3,7 @@ import { useTranslations } from 'next-intl';
 import { Icon } from '@/components/shared/icon';
 
 export default function Footer() {
-  const t = useTranslations('frontapi');
+  const t = useTranslations();
   const currentYear = new Date().getFullYear();
 
   return (
