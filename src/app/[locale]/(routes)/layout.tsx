@@ -1,10 +1,8 @@
 import { redirect } from 'next/navigation';
 import { Metadata } from 'next';
 import { auth } from '@/server/auth';
-import LocalSwitcher from '@/components/shared/locale-switcher';
-import ThemeButton from '@/components/shared/theme-switcher';
-import Footer from '@/components/layout/footer/footer';
-import LogoutButton from '@/components/shared/logout-button';
+import DashboardFooter from '@/components/layout/footer/dashboard';
+import DashboardHeader from '@/components/layout/header/dashboard';
 export const metadata: Metadata = {
   metadataBase: new URL(
     process.env.NEXT_PUBLIC_APP_URL! || 'http://localhost:3000'
@@ -23,16 +21,12 @@ export default async function AppLayout({
   }
 
   return (
-    <div className='flex flex-col min-h-screen w-full'>
-      <div className='flex justify-end items-center gap-5 w-full p-5'>
-        <LogoutButton />
-        <LocalSwitcher />
-        <ThemeButton />
-      </div>
-      <div className='flex justify-center items-center grow h-full overflow-hidden'>
-        {children}
-      </div>
-      <Footer />
+    <div className='flex min-h-svh w-full flex-col bg-default-100 dark:bg-background'>
+      <DashboardHeader />
+      <main className='flex-1 bg-default-100 dark:bg-background'>
+        <div className='mb-24 md:mb-0 p-6'>{children}</div>
+      </main>
+      <DashboardFooter />
     </div>
   );
 }

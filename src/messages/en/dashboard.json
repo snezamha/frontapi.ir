@@ -1,0 +1,11 @@
+{
+  "profileInfo": {
+    "profile": "Profile",
+    "settings": "Settings",
+    "github": "Github",
+    "logout": "Logout"
+  },
+  "menu": {
+    "dashboard": "Dashboard"
+  }
+}

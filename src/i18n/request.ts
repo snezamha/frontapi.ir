@@ -10,7 +10,8 @@ export default getRequestConfig(async ({ locale }: { locale: Locale }) => {
   return {
     messages: {
       ...(await import(`../messages/${locale}/frontapi.json`)).default,
-      ...(await import(`../messages/${locale}/auth.json`)).default,
+      ...(await import(`../messages/${locale}/auth.json`)),
+      ...(await import(`../messages/${locale}/dashboard.json`)),
     },
   };
 });

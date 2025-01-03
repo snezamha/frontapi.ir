@@ -25,8 +25,8 @@ export async function generateMetadata(props: Props) {
 
   return {
     metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL!),
-    title: t('RootLayout.title'),
-    description: t('RootLayout.description'),
+    title: t('rootLayout.title'),
+    description: t('rootLayout.description'),
   };
 }
 

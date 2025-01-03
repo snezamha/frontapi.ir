@@ -5,7 +5,7 @@ import ThemeButton from '@/components/shared/theme-switcher';
 const AuthLayout = async ({ children }: { children: React.ReactNode }) => {
   return (
     <div className='flex flex-col min-h-screen w-full'>
-      <div className='flex justify-end items-center gap-5 w-full p-5'>
+      <div className='flex justify-end items-center gap-5 w-full px-5 py-2'>
         <LocalSwitcher />
         <ThemeButton />
       </div>
